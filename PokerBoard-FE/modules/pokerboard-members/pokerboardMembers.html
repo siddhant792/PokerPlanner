@@ -1,0 +1,45 @@
+<div class="main-outer">
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Delete Member</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to want to delete this member ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" ng-click="removeMember()" data-bs-dismiss="modal" class="btn btn-danger">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="main-heading" ng-click="goToMembers()">Members</h4>
+    <div>
+        <div class="tab-head">
+            <p>INVITEE</p>
+            <p>GROUP NAME</p>
+            <p>ROLE</p>
+        </div>
+        <div class="hor-rule"></div>
+    </div>
+    <div class="tab-content">
+        <p>{{ pokerboard.manager.email }}</p>
+        <p>-</p>
+        <p>Manager</p>
+    </div>
+    <div class="hor-rule"></div>
+    <div ng-repeat="member in members">
+        <div class="tab-content">
+            <p>{{ member.invitee }}</p>
+            <p>{{ member.group_name }}</p>
+            <p>{{ member.role }}</p>
+            <button data-bs-toggle="modal" data-bs-target="#deleteModal" ng-click="setDeleteNumber(member.id)" 
+                class="join-btn bg-danger" ng-show="isManager"><i class="fa fa-trash"></i></button>
+        </div>
+        <div class="hor-rule"></div>
+    </div>
+</div>

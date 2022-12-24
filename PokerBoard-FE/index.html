@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="static/css/index.css" />
+  <link rel="stylesheet" href="modules/signup/signup.css" />
+  <link rel="stylesheet" href="modules/login/login.css" />
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="modules/emailVerification/email-verification.css" />
+  <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="modules/profile/profile.css">
+  <link rel="stylesheet" href="modules/create-game/create-game.css">
+  <link rel="stylesheet" href="modules/pokerboard/pokerboard.css">
+  <link rel="stylesheet" href="modules/voting-session/voting-session.css">
+  <link rel="stylesheet" href="modules/invite-acception/inviteAcception.css" />
+
+  <!-- Node Modules -->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/lodash/lodash.js"></script>
+  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="node_modules/restangular/src/restangular.js"></script>
+  <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.js"></script>
+  <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+  <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
+  <script src="node_modules/angular-material/angular-material.min.js"></script>
+  <script src="node_modules/crypto-js/crypto-js.js"></script>
+  <script src="node_modules/angular-websocket/dist/angular-websocket.js"></script>
+
+  <!-- Imports -->
+  <script src="env.js"></script>
+  <script src="main/app.js"></script>
+  <script src="main/appConfig.js"></script>
+  <script src="main/constants.js"></script>
+  <script src="main/appRun.js"></script>
+
+  <!-- Controllers -->
+  <script src="modules/signup/controller.js"></script>
+  <script src="modules/login/controller.js"></script>
+  <script src="modules/profile/controller.js"></script>
+  <script src="modules/emailVerification/controller.js"></script>
+  <script src="modules/group/groupDetails.controller.js"></script>
+  <script src="modules/group/groupList.controller.js"></script>
+  <script src="modules/profile/controller.js"></script>
+  <script src="modules/pokerboard/controller.js"></script>
+  <script src="modules/create-game/controller.js"></script>
+  <script src="modules/pokerboard/pokerboardDetails.js"></script>
+  <script src="modules/voting-session/controller.js"></script>
+
+  <script src="modules/invite-acception/controller.js"></script>
+  <script src="modules/pokerboard-members/controller.js"></script>
+
+  <!-- Directives -->
+  <script src="directives/navbar/navbar.js"></script>
+  <script src="directives/checkConfirmPass.js"></script>
+  <script src="directives/errorMsg/errorMsg.js"></script>
+
+  <!-- Services -->
+  <script src="modules/login/services.js"></script>
+  <script src="modules/emailVerification/services.js"></script>
+  <script src="modules/signup/services.js"></script>
+  <script src="modules/group/services.js"></script>
+  <script src="modules/profile/services.js"></script>
+  <script src="modules/create-game/services.js"></script>
+  <script src="modules/pokerboard/services.js"></script>
+  <script src="modules/voting-session/services.js"></script>
+  <script src="modules/invite-acception/services.js"></script>
+  <script src="modules/pokerboard-members/services.js"></script>
+
+</head>
+
+<body ng-app="pokerPlanner">
+  <div class="loader" ng-show="loading">
+    <div class="spinner-border" class="loader-size" role="status"></div>
+  </div>
+  <nav-bar ng-show="isAuth"></nav-bar>
+  <ui-view></ui-view>
+</body>
+
+</html>

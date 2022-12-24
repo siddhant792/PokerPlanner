@@ -1,0 +1,48 @@
+<div class="main-outer">
+  <h4 class="main-heading">Recent Groups</h4>
+    <!-- Modal -->
+  <div class="modal fade" id="createGroupModal" tabindex="-1" aria-labelledby="createGroupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createGroupModalLabel">Create group</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form name="createGroupForm">
+              <input ng-model="groupName" name="groupName" required placeholder="Enter group name" type="text" minlength="4" maxlength="20">
+              <div ng-messages="createGroupForm.groupName.$error" class="invalid mt-1" role="alert">
+                <span ng-show="createGroupForm.groupName.$touched" ng-message="required">Group name is required!</span>
+                <span ng-message="minlength">Minimum 4 characters required!</span>
+                <span ng-message="maxlength">Maximum 20 characters required!</span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button ng-disabled="createGroupForm.$invalid" type="button" ng-click="createGroup()" data-bs-dismiss="modal" class="btn btn-primary">Create</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <button data-bs-toggle="modal" data-bs-target="#createGroupModal" class="new-btn bg-dark"><i class="ic-plus fa fa-plus"></i>New group</button>
+  <p class="mt-4 main-heading" ng-show="!(groups.length)">You have not created/joined any group yet!</p>
+  <div ng-show="groups.length">
+      <div class="tab-head">
+          <p>NAME</p>
+          <p>CREATED AT</p>
+          <p>MEMBERS</p>
+      </div>
+      <div class="hor-rule"></div>
+  </div>
+  <div ng-repeat="group in groups">
+      <div class="tab-content">
+          <p>{{ group.name }}</p>
+          <p>{{ group.created_at }}</p>
+          <p>{{ group.members }}</p>
+          <a href="#groups/{{group.id}}" class="btn btn-dark join-btn bg-dark">View group</a>
+          <button ng-click="deleteGroup(group.id)" ng-show="user.id==group.created_by" class="btn-delete bg-dark"><i class="fa fa-trash"></i></button>
+      </div>
+      <div class="hor-rule"></div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div>
+    <form class="signup-form mt-2" name="signupForm">
+        <h1 class="mt-4 mb-4">Poker Planner</h1>
+        <h2 class="mb-4">Signup</h2>
+        <div class="form-group signup-field">
+            <h6 class="text-danger mt-3 mb-3">* indicates required</h6>
+            <label>First Name<span class="text-danger">*</span></label>
+            <input type="text" name="firstName" ng-model="firstName" class="form-control" placeholder="Enter first name" required>
+            <error-msg field="firstName"></error-msg>
+        </div>
+        <div class="form-group signup-field">
+            <label>Last Name<span class="text-danger">*</span></label>
+            <input type="text" name="lastName" ng-model="lastName" class="form-control" placeholder="Enter last name" required>
+            <error-msg field="lastName"></error-msg>
+        </div>
+        <div class="form-group signup-field">
+            <label>Email<span class="text-danger">*</span></label>
+            <input type="email" name="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-change="isEmailError()" ng-model="email" class="form-control" placeholder="Enter email address" required>
+            <div ng-messages="signupForm.email.$error" class="invalid" role="alert">
+                <span ng-show="showError">Email already exists!</span>
+            </div>
+            <error-msg field="email"></error-msg>
+        </div>
+        <div class="form-group signup-field">
+            <label>Password<span class="text-danger">*</span></label>
+            <input type="password" name="password" ng-model="password" ng-pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+            class="form-control" placeholder="Enter password" required>
+            <error-msg field="password"></error-msg>
+        </div> 
+        <p ng-show="signupForm.password.$invalid" class="note">Note: {{ passNote }}</p> 
+        <div class="form-group signup-field">
+            <label>Confirm Password<span class="text-danger">*</span></label>
+            <input type="password" name="confirmPassword" ng-model="confirmPassword" class="form-control" placeholder="Confirm password" required check-confirm-pass="password" >
+            <div ng-messages="signupForm.confirmPassword.$error" class="invalid" role="alert">
+                <span ng-show="signupForm.confirmPassword.$touched" ng-message="required">Confirm Password is required!</span> 
+                <span ng-show="signupForm.confirmPassword.$dirty" ng-message="checkConfirmPass">Passwords donot match!</span> 
+            </div>
+        </div> 
+        <button type="submit" ng-disabled="signupForm.$invalid" ng-click="signup()" class="btn btn-success mt-4 align-self-end">Submit</button>
+        <button class="btn btn-success mt-4 mb-4 align-self-end" ng-click="goToLogin()">Already SignedUp?</button>
+      </form>
+</div>

@@ -1,0 +1,61 @@
+<div class="main-outer">
+  <h4 class="main-heading">Group members</h4>
+  <!-- Modal -->
+  <div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addMemberModalLabel">Add member</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form name="addMemberForm">
+              <input ng-model="email" required name="email" placeholder="Enter email address" type="email">
+              <error-msg field="email"></error-msg>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button ng-disabled="addMemberForm.$invalid" type="button" ng-click="createMember()" data-bs-dismiss="modal" class="btn btn-primary">Add</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5>Remove Member</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  Are you sure to want to remove this member ?
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                  <button type="button" ng-click="removeMember()" data-bs-dismiss="modal" class="btn btn-danger">Yes</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class=" m-2 d-flex justify-content-between">
+    <h2>{{ group.name }}</h2>
+    <button data-bs-toggle="modal"  ng-show="user.id==group.created_by" data-bs-target="#addMemberModal" class="new-btn bg-dark"><i class="ic-plus fa fa-plus"></i>Add member</button>
+  </div>
+  <div ng-show="group.members.length">
+      <div class="tab-head">
+          <p>NAME</p>
+          <p>EMAIL</p>
+      </div>
+      <div class="hor-rule"></div>
+  </div>
+  <div ng-repeat="member in group.members">
+    <div class="tab-content">
+      <p>{{ member.user.first_name }} {{ member.user.last_name }}</p>
+      <p>{{ member.user.email }}</p>
+      <button data-bs-toggle="modal" data-bs-target="#deleteModal" ng-click="setDeleteNumber(member.user.id)" ng-show="user.id != member.user.id && user.id==group.created_by"  class="join-btn bg-dark">Remove</button>
+      </div>
+      <div class="hor-rule"></div>
+  </div>
+</div>

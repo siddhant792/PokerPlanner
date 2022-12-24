@@ -1,0 +1,30 @@
+.signup-form {
+    padding: 20px;
+    max-width: 35%;
+    margin: auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-field {
+    margin: 8px 0;
+}
+
+.signup-field input {
+    width: 300px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+.invalid {
+    color: red;
+    font-size: 14px;
+}
+
+.note{
+    font-size: 13px;
+    color: rgb(13, 60, 216);
+    width: 300px;
+}

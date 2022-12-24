@@ -1,0 +1,104 @@
+<div class="m-2">
+    <div class="m-2 d-flex justify-content-between">
+        <div>
+            <h2>{{ pokerboard.title }}</h2>
+        </div>
+        <div>
+            <button class="btn btn-secondary bg-dark" ng-click="goToMembers()">Members</button>
+            <button data-bs-toggle="modal" data-bs-target="#inviteUserModal" ng-show="user.id==pokerboard.manager.id"
+                class="btn btn-success">Invite user</button>
+        </div> 
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="inviteUserModal" tabindex="-1" aria-labelledby="inviteUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="inviteUserModalLabel">Invite user</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="inviteForm">
+                        <h5>Invite by :-</h5>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" ng-click="showEmailForm()" name="options" id="option1"
+                                    autocomplete="off" checked> Email
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" ng-click="showGroupForm()" name="options" id="option2"
+                                    autocomplete="off"> Group
+                            </label>
+                        </div>
+                        <div ng-show="emailInviteForm">
+                            <label class="mt-3">Email<span class="text-danger">*</span></label>
+                            <input ng-model="email" required name="email" ng-change="isUserError()" placeholder="Enter email address"
+                                type="email">
+                            <div ng-messages="inviteForm.email.$error" class="invalid mt-1" role="alert">
+                                <span ng-show="inviteForm.email.$touched" ng-message="required">Email is
+                                    required!</span>
+                                <span ng-message="email">Not a valid email address!</span>
+                                <span ng-show="showUserError">User already invited!</span>
+                            </div>
+                        </div>
+                        <div ng-hide="emailInviteForm">
+                            <label class="mt-3">Group Name<span class="text-danger">*</span></label>
+                            <input ng-model="group" required name="group" ng-change="isGroupError()" placeholder="Enter group name" type="text">
+                            <div ng-messages="inviteForm.group.$error" class="invalid mt-1" role="alert">
+                                <span ng-show="inviteForm.group.$touched" ng-message="required">Group name is
+                                    required!</span>
+                                <span ng-show="showError">Group with this name does not exist!</span>
+                                <span ng-show="showGroupError">Group already invited!</span>
+                            </div>
+                        </div>
+                        <label class="mt-2">Role<span class="text-danger">*</span></label>
+                        <select class="form-select w-25" ng-model="role">
+                            <option value=1>Spectator</option>
+                            <option value=2>Contributor</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" ng-click="inviteUser()" data-bs-dismiss="modal"
+                        class="btn btn-primary">Invite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-outer">
+        <h4 class="main-heading">Tickets</h4>
+        <p class="mx-1" ng-show="pokerboard.tickets.length==0">Congrats!!! You have estimated all your tickets</p>
+        <div>
+            <div class="tab-head">
+                <p>TICKET ID</p>
+                <p>SUMMARY</p>
+            </div>
+            <div class="hor-rule"></div>
+        </div>
+        <div ng-repeat="ticket in pokerboard.tickets">
+            <div class="tab-content">
+                <p>{{ ticket.ticket_id }}</p>
+                <p class="w-50">{{ ticket.summary }}</p>
+                <button ng-show="user.id==pokerboard.manager.id" ng-click="createSession(ticket.id)" class="join-btn bg-dark">Estimate</button>
+                <button ng-show="user.id==pokerboard.manager.id" ng-click="moveUp($index)" class="btn-delete bg-dark mx-1"><i class="bi bi-arrow-up"></i></button>
+                <button ng-show="user.id==pokerboard.manager.id" ng-click="moveDown($index)" class="btn-delete bg-dark mx-1"><i class="bi bi-arrow-down"></i></button>
+            </div>
+            <div class="hor-rule"></div>
+        </div>
+        <div ng-show="isEditing" class="my-3 d-flex justify-content-end">
+            <button class="m-1 btn btn-secondary" ng-click="cancelOrdering()">Cancel</button>
+            <button class="m-1 btn btn-success" ng-click="saveOrdering()">Save</button>
+        </div>
+        <div class="my-4">
+            <div class="tab-head">
+                <p>ESTIMATED TICKETS</p>
+            </div>
+            <p class="mx-1" ng-show="pokerboard.estimated.length==0">You have not estimated any tickets yet!!</p>
+            <li style="width: fit-content;" class="mx-1 bg-primary d-inline badge" ng-repeat="ticket in pokerboard.estimated">
+                <span>{{ ticket.ticket_id }} : {{ticket.estimate}}</span>
+            </li>
+        </div>
+    </div>
+</div>

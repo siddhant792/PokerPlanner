@@ -1,0 +1,108 @@
+<div class="main-create-game back-univ">
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Delete Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to want to delete this ticket ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" ng-click="removeTicket()" data-bs-dismiss="modal" class="btn btn-dark">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h4 class="head-create-game">Create New Game</h4>
+    <form class="mt-3 form-container">
+        <h6 class="basis-setting">Game Basics</h6>
+        <div class="form-group flex">
+            <label class="required mt-1 mr-15 g-name" for="name">Game name</label>
+            <input type="text" class="form-control w-50" minlength="5" name="name" required id="name"
+                placeholder="Enter Game name" ng-model="name">
+        </div>
+        <span ng-show="nameErrorMsg.length > 0" class="err-ml f-12 text-danger mb-1 mt-1">{{ nameErrorMsg }}</span>
+        <div class="form-group mt-2 flex">
+            <label class="required mt-1 mr-15" for="description">Game description</label>
+            <textarea type="text" minlength="10" class="form-control w-50 desc-text" name="description" required
+                id="description" ng-model="description" placeholder="Enter Game description"></textarea>
+        </div>
+        <div class="form-group mt-2 flex">
+            <label class="mt-1 mr-15 g-type" for="type">Deck type</label>
+            <select class="form-select w-25" ng-model="selectedType">
+                <option ng-repeat="deck in deckType" value="{{deck.val}}">{{ deck.name }}</option>
+            </select>
+        </div>
+        <div class="form-group mt-2 flex">
+            <label class="required mt-1 mr-15 g-dur" for="tags">Game duration</label>
+            <input type="number" class="form-control w-25" required name="duration" id="duration" ng-model="duration"
+                placeholder="Enter Duration in seconds">
+        </div>
+
+        <h6 class="basis-setting mt-5">Game Backlogs</h6>
+
+        <div class="s-bar mt-1">
+            <div class="flex mt-2">
+                <div>
+                    <md-input-container class="md-input-container">
+                        <label>Projects</label>
+                        <md-select ng-model="selectedProjects" ng-change="queryConstructor()" multiple="">
+                            <md-optgroup label="projects">
+                                <md-option ng-value="project" ng-repeat="project in projectList">{{ project.label }}
+                                </md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div class="ml-50">
+                    <md-input-container class="md-input-container">
+                        <label>Sprints</label>
+                        <md-select ng-model="selectedSprints" ng-change="queryConstructor()" multiple="">
+                            <md-optgroup label="Sprints">
+                                <md-option ng-value="sprint" ng-repeat="sprint in sprintList">{{ sprint.label }}
+                                </md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="input-group drop-cont mt-2">
+                <input type="text" class="form-control" ng-model="jqlCustomQuery" placeholder="Enter JQL">
+                <div class="input-group-append">
+                    <button class="btn btn-dark ml-5" ng-click="executeCustomQuery()" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="ticketList.length > 0" class="outer-ticket-cont">
+            <div>
+                <div class="ticket-head">
+                    <p>Action</p>
+                    <p>Key</p>
+                    <p>Summary</p>
+                </div>
+                <div class="hor-rule"></div>
+            </div>
+            <div ng-repeat="ticket in ticketList">
+                <div class="ticket-content">
+                    <button data-bs-toggle="modal" data-bs-target="#deleteModal" ng-click="setDeleteNumber(ticket)"
+                        class="btn-rem-ticket bg-dark"><i class="fa fa-trash"></i></button>
+                    <p class="tickey-key-cont">{{ ticket.key }}</p>
+                    <P class="sum-cont">{{ ticket.summary }}</p>
+                </div>
+                <div class="hor-rule"></div>
+            </div>
+        </div>
+
+        <div class="logout-driver mt-4 btn-create">
+            <button ng-disabled="!name || !description || !duration || !ticketList.length" ng-click="submit()" class="btn btn-dark">Create Game</button>
+        </div>
+    </form>
+</div>

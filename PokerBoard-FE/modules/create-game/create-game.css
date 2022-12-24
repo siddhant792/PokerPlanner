@@ -1,0 +1,123 @@
+.main-create-game {
+    margin-top: 20px;
+    background-color: #f1f1f1;
+}
+
+.flex {
+    display: flex;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.g-name {
+    margin-left: 42px;
+}
+
+.g-dur {
+    margin-left: 20px;
+}
+
+.ml-5{
+    margin-left: 5px;
+}
+
+.g-type {
+    margin-left: 66px;
+}
+
+.btn-create {
+    margin-left: 154px;
+    margin-bottom: 30px;
+}
+
+.desc-text {
+    height: 100px;
+}
+
+.s-bar {
+    margin-left: 154px;
+    display: flex;
+    flex-direction: column;
+}
+
+.drop-cont {
+    display: flex;
+    width: 570px;
+}
+
+.head-create-game {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 200px;
+    color: rgb(92, 92, 92);
+}
+
+.basis-setting {
+    color: #000;
+    margin-left: 158px;
+}
+
+.ml-50{
+    display: flex;
+    margin-left: 50px;
+}
+
+.err-ml{
+    margin-left: 155px;
+}
+
+.md-input-container {
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    margin: 0 0;
+    vertical-align: middle;
+}
+
+.ticket-head{
+    display: flex;   
+}
+
+.ticket-head p{
+    width: 100px;
+    height: 15px;
+    color: #000;
+}
+
+.outer-ticket-cont{
+    margin-left: 154px;
+    margin-top: 30px;
+    width: 570px;
+}
+
+.ticket-content{
+    display: flex;
+    margin-top: 10px;
+}
+
+.btn-rem-ticket{
+    width: 30px;
+    border: 0px;
+    height: 30px;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.tickey-key-cont{
+    width: 100px;
+    margin-left: 60px;
+}
+
+.sum-cont{
+    width: auto;
+    
+}

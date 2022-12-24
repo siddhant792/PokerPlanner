@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asgiref = "==3.4.1"
+Django = "==2.2"
+django-cors-headers = "==3.7.0"
+psycopg2 = "==2.9.1"
+pytz = "==2021.1"
+sqlparse = "==0.4.1"
+djangorestframework = "*"
+channels = "*"
+django-class-settings = "*"
+celery = "*"
+requests = "*"
+channels-redis = "*"
+django-dynamic-fixture = "*"
+pytest-django = "*"
+pytest-asyncio = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

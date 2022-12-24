@@ -1,0 +1,84 @@
+<div class="mt-5 back-univ main-cont mb-4">
+    <!-- Edit profile section -->
+    <div class="back-cont">
+        <h5 class="text-center mb-3">Edit Profile</h5>
+        <div class="outer-form mt-2">
+            <form class="main-form" name="f1">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" name="email" disabled id="email" ng-model="email">
+                </div>
+                <div class="form-group mt-2">
+                    <label class="" for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstname" required id="firstname"
+                        placeholder="Please enter First Name" ng-model="firstname">
+                    <error-msg field="firstname"></error-msg>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="" for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" required id="lastname"
+                        placeholder="Please enter Last Name" ng-model="lastname">
+                    <error-msg field="lastname"></error-msg>
+                </div>
+                <div class="form-group mt-2">
+                    <label class="" for="newpassword">New Password</label>
+                    <input type="password" class="form-control"
+                        ng-pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+                        name="npassword" id="password" ng-model="password" placeholder="New Password">
+                    <span class="invalid" ng-show="f1.npassword.$invalid">Please enter a valid password!</span>
+                </div>
+                <p class="mt-2 pass-note">Note: {{ passNote }}</p>
+                <div class="form-group mt-2">
+                    <label class="" for="cnewpassword">Confirm New Password</label>
+                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                        ng-model="confirmPassword" check-confirm-pass="password" placeholder="Confirm New Password">
+                </div>
+                <div ng-messages="f1.confirmPassword.$error" class="invalid" role="alert">
+                    <span ng-show="f1.confirmPassword.$dirty" ng-message="checkConfirmPass">Passwords donot
+                        match!</span>
+                </div>
+                <div class="form-group mt-2">
+                    <span ng-show="errorMsg.length > 0" class="invalid">{{ errorMsg }}</span>
+                </div>
+                <div class="logout-driver mt-3">
+                    <button type="submit" ng-disabled="f1.$invalid || f1.$pristine" ng-click="onSubmit()"
+                        class="btn btn-success">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- boards joined-->
+    <div ng-show="pokerboardList.length > 0" class="back-cont mt-4">
+        <h5 class="text-center mb-3">Pokerboards Joined</h5>
+        <div class="outer-form mt-4"> 
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+                <tr ng-repeat="item in pokerboardList">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.status }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- groups joined -->
+    <div ng-show="groupList.length > 0" class="back-cont mt-4">
+        <h5 class="text-center mb-3">Groups Joined</h5>
+        <div class="outer-form mt-4"> 
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Created At</th>
+                </tr>
+                <tr ng-repeat="item in groupList">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.createdAt }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

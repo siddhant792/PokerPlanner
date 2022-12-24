@@ -1,0 +1,38 @@
+.align-center{
+    display: flex;
+    justify-content: center;
+}
+
+.white-back{
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 80px;
+    padding: 30px 50px 40px 50px;
+    width: 450px;
+}
+
+.heading-top{
+    text-align: center; 
+    margin-bottom: 40px;
+}
+
+.grey-back{
+    background-color: rgb(245, 245, 245);
+}
+
+.required:after {
+    content:" *";
+    color: red;
+}
+
+.redirect-extras{
+    font-size: 12px;
+    cursor: pointer;
+    color: green;
+    margin-left: 15px;
+    padding-top: 5px;
+}
+
+.f-12{
+    font-size: 12px;
+}
